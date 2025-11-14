@@ -2571,11 +2571,6 @@ void transform::NamedSequenceOp::build(OpBuilder &builder,
                      TypeAttr::get(FunctionType::get(builder.getContext(),
                                                      rootType, resultTypes)));
   state.attributes.append(attrs.begin(), attrs.end());
-  if (!argAttrs.empty()) {
-    SmallVector<Attribute> argAttrsVec(argAttrs.begin(), argAttrs.end());
-    state.getOrAddProperties<Properties>().arg_attrs =
-        ArrayAttr::get(builder.getContext(), argAttrsVec);
-  }
   state.addRegion();
 
   buildSequenceBody(builder, state, rootType,
